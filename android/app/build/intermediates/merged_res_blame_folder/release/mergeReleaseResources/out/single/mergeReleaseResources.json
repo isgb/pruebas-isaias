@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-mdpi_src_assets_logoelm.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-mdpi/src_assets_logoelm.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-mdpi_src_assets_fondo_ajuech.jpeg.flat",
+        "source": "com.appelm.app-res-32:/drawable-mdpi/src_assets_fondo_ajuech.jpeg"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.appelm.app-main-38:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.appelm.app-main-38:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.appelm.app-release-37:/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.appelm.app-res-32:/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    }
+]

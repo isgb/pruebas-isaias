@@ -1,0 +1,11 @@
+export const green             = '#2BB789';
+export const darkGreen         = '#006A42';
+export const darkRed           = '#a10c0c';
+export const darkBlue          = '#124D99';
+export const orangeElm         = '#DA6B1B';
+export const orange            = '#fb541d';
+export const blackElm          = '#000000';
+export const grayElm           = '#525252';
+export const whiteELm          = '#FFFFFF';
+export const orangeElmDisabled = '#EB9F68';
+export const blueElm           = '#4f8fe1';
