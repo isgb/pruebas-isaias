@@ -190,6 +190,8 @@ export const SQLliteProvider = ({ children }) => {
         });
     };
 
+    
+
     // Consultar si hay registros en la tabla data_users con el email dado y token no nulo
     const hasNullTokenByEmail = (email) => {
         return new Promise((resolve, reject) => {

@@ -72,7 +72,7 @@ export const loginRequest = async (user) => {
                 console.log("Respuesta del servidor:", response.data);
                 return response;
             } else {
-                console.error("Error en la respuesta del servidor:", response.status);
+                console.log("Error en la respuesta del servidor:", response.status);
                 return null;
             }
         } catch (error) {

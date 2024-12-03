@@ -264,18 +264,10 @@ export const AuthProvider = ({ children }) => {
 
     // Función para enviar datos de usuarios cuando se restablece la conexión
     const handleSendDataUsersOnConnectionRestored = async (stateConnection) => {
-
-        // console.log("handleSendDataUsersOnConnectionRestored", stateConnection, user?.email);
-
-        //  Alert.alert('CREDENCIALES: ', user);
          
         if (stateConnection.isConnected && user?.email) {
             const jornadaAbierta = await getUserJornadaAbierta(user);
             const token = await AsyncStorage.getItem('token');
-
-            // Alert.alert(
-            //     "Jornada abierta" + jornadaAbierta, 
-            // );
 
             if (jornadaAbierta && !token) {
                 const dataUsers = await getDataUsersByEmail(user?.email);
@@ -310,92 +302,14 @@ export const AuthProvider = ({ children }) => {
                         nuevoToken = await AsyncStorage.getItem('token');
                     }
 
-                    await dataUsers.map(async dataUser => {
-
+                    for (const dataUser of dataUsers) {
                         console.log("ID DATA USER : ", dataUser.id);
-
-                        if(dataUser.endpoint === 'jornadasrequest'){
-                           const formdataJornadaUser = transformToFormDataWithoutPhotoSelfie(dataUser.formdata);
-                           formdataJornadaUser.append("password", user.password);
-                           formdataJornadaUser.append("token", nuevoToken);
-                           formdataJornadaUser.append("fechaEvento", dataUser.created_at);
-                           
-                           const respiniciarJornadaRequest = await iniciarJornada(formdataJornadaUser);
-                           if (respiniciarJornadaRequest && 
-                               respiniciarJornadaRequest.data.status === "200" &&
-                               respiniciarJornadaRequest.data.jornada) {
-                                
-                               const jornadaId = respiniciarJornadaRequest.data.jornada.id;
-                               const statusJornada = respiniciarJornadaRequest.data.statusJornada;
-
-                                 console.log("EXITO:", dataUser.id);
-                                // TODO: Enviar data de selfies al servidor
-                                // Proceso de envio de selfies
-                                await sendAndSaveDataSelfie(dataUser, jornadaId, statusJornada);
-                                // Eliminar dataUser de la tabla
-                                await removeDataUserById(dataUser.id);
-                                // FIN TODO
-                           } else {
-                               console.warn("Error al guardar jornada para el usuario:", dataUser);
-                               console.warn("Error formdataJornadaUser", formdataJornadaUser);
-                               console.warn("Error respiniciarJornadaRequest", respiniciarJornadaRequest);
-                               console.warn("Error TOKEN", token);
-                            //    Alert.alert('Error DEV', 
-                            //      'USUARIO: ' + dataUser.email + '\n' +
-                            //      'CONTRASEÑA: ' + dataUser.password + '\n' +
-                            //      'TOKEN: ' + token + '\n' +
-                            //      'ERROR RESPUESTA DEL SERVIDOR: ' + respiniciarJornadaRequest + '\n' +
-                            //      'DATOS QUE SE ENVIAN: ' + JSON.stringify(formdataJornadaUser) + '\n'
-                            //    );
-                           }
-                        }
-
-                    });
-                    console.log(" ------- FIN COMPROBAR DATOS --------")
-                    return;
-                }
-            }
-        }
-    };
-
-    const handleSendAllDataUsersOnConnectionRestored = async (stateConnection) => {
-        console.log("handleSendAllDataUsersOnConnectionRestored", stateConnection);
-        if (stateConnection.isConnected) {
-            const allDataUsers = await getAllDataUsers();
-            if (allDataUsers.length > 0) {
-                console.log(" ------- COMPROBAR TODOS LOS DATOS --------");
-                for (const dataUser of allDataUsers) {
-                    const user = await getUser(dataUser.email);
-                    if (user) {
-                        const hasNull = await hasNullTokenByEmail(user.email);
-                        if (hasNull) {
-                            const token = await AsyncStorage.getItem('token');
-                            const refreshToken = await AsyncStorage.getItem('refreshtoken');
-                            if (!token && !refreshToken) {
-                                const respHandleGetTokens = await handleGetTokens(user);
-                                if (respHandleGetTokens?.data?.data?.token) {
-                                    await updateTokensByUsername(user.email, JSON.stringify(respHandleGetTokens.data.data.token), JSON.stringify(respHandleGetTokens.data.data.refreshtoken));
-                                } else {
-                                    console.warn('Error: No token received in response.');
-                                    continue;
-                                }
-                            } else if (token && refreshToken) {
-                                await updateTokensByUsername(user.email, token, refreshToken);
-                            } else {
-                                console.warn('Error: Missing token or refreshToken.');
-                                continue;
-                            }
-                        }
-
-                        let nuevoToken = await AsyncStorage.getItem('token');
-                        if (nuevoToken !== token) {
-                            nuevoToken = await AsyncStorage.getItem('token');
-                        }
 
                         if (dataUser.endpoint === 'jornadasrequest') {
                             const formdataJornadaUser = transformToFormDataWithoutPhotoSelfie(dataUser.formdata);
                             formdataJornadaUser.append("password", user.password);
                             formdataJornadaUser.append("token", nuevoToken);
+                            formdataJornadaUser.append("fechaEvento", dataUser.created_at);
 
                             const respiniciarJornadaRequest = await iniciarJornada(formdataJornadaUser);
                             if (respiniciarJornadaRequest &&
@@ -405,20 +319,22 @@ export const AuthProvider = ({ children }) => {
                                 const jornadaId = respiniciarJornadaRequest.data.jornada.id;
                                 const statusJornada = respiniciarJornadaRequest.data.statusJornada;
 
-                                console.log("EXITO:", formdataJornadaUser);
-                                console.log("EXITO iniciarJornadaRequest", respiniciarJornadaRequest);
-
+                                // Guarda, enviar y eliminar selfie
+                                console.log("EXITO:", dataUser.id);
                                 await sendAndSaveDataSelfie(dataUser, jornadaId, statusJornada);
                                 await removeDataUserById(dataUser.id);
+                                
                             } else {
                                 console.warn("Error al guardar jornada para el usuario:", dataUser);
                                 console.warn("Error formdataJornadaUser", formdataJornadaUser);
                                 console.warn("Error respiniciarJornadaRequest", respiniciarJornadaRequest);
+                                console.warn("Error TOKEN", nuevoToken);
                             }
                         }
                     }
+                    console.log(" ------- FIN COMPROBAR DATOS --------")
+                    return;
                 }
-                console.log(" ------- FIN COMPROBAR TODOS LOS DATOS --------");
             }
         }
     };
@@ -451,24 +367,12 @@ export const AuthProvider = ({ children }) => {
             const dataUsers = await getAllDataUsers();
             // console.log("setInterval dataUsers", dataUsers);
             if (dataUsers.length > 0 ) {
-                
-                // ToastAndroid.showWithGravity(
-                //     "Ejecutando metodo de envio de datos pendientes..." + JSON.stringify(dataUsers),
-                //     ToastAndroid.SHORT,
-                //     ToastAndroid.CENTER
-                // );
-
-                // Alert.alert(
-                //     "Información",
-                //     "Ejecutando metodo de envio de datos pendientes..." + JSON.stringify(dataUsers),
-                // );
-
                 await handleSendDataUsersOnConnectionRestored({ isConnected: isOnlineAuth });
                 await sendPendingSelfies();
             } else {
                 clearInterval(interval); // Limpiar el intervalo si no hay datos
             }
-        }, 5000); // Ejecutar cada 5 segundos
+        }, 3000); // Ejecutar cada 5 segundos
 
         return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
 
